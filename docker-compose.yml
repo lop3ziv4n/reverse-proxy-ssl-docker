@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+
+  reverse-proxy-ssl:
+    container_name: reverse-proxy-ssl
+    image: reverse-proxy-ssl/nginx:alpine
+    build:
+      context: ./nginx
+    restart: always
+    links:
+      - "web:tomcat"
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+
+  web:
+    container_name: web
+    image: tomcat:alpine
+    restart: always
+    volumes:
+      - ~/tomcat/logs:/usr/local/tomcat/logs
+      - ~/tomcat/war:/usr/local/tomcat/webapps

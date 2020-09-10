@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:latest
+    command: certonly --webroot --webroot-path=/var/www/html --email email@dominio.com --agree-tos --no-eff-email -d dominio.com -d www.dominio.com
+    volumes:
+      - ~/cerebot-storage/conf:/etc/letsencrypt
+      - ~/cerebot-storage/logs:/var/log/letsencrypt
+      - ~/cerebot-storage/data:/var/www/html
