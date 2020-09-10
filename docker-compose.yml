@@ -4,7 +4,7 @@ services:
 
   reverse-proxy-ssl:
     container_name: reverse-proxy-ssl
-    image: reverse-proxy-ssl/nginx:alpine
+    image: reverse-proxy-ssl/nginx
     build:
       context: ./nginx
     restart: always
